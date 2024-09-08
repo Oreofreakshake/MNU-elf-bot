@@ -1,67 +1,67 @@
-import telebot
+import os
 import asyncio
 from telebot.async_telebot import AsyncTeleBot
+from telebot.types import BotCommand
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # my lib
-from cogs import cog__init__
-from cogs import commandnames
+from cogs import cog__init__, commandnames
 
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
-bot = AsyncTeleBot("TOKEN")
+bot = AsyncTeleBot(BOT_TOKEN)
+
 name = commandnames
 command = cog__init__.Commands(bot)
 
-
-# setcommands
-async def SetCommand():
-
+async def set_commands():
     await bot.delete_my_commands(scope=None, language_code=None)
 
-    Slash = []
+    commands = [
+        BotCommand(name, description)
+        for name, description in zip(name.commandsname, name.commanddescript)
+    ]
 
-    for item in range(len(name.commandsname)):
-        Slash.append(
-            telebot.types.BotCommand(
-                name.commandsname[item], name.commanddescript[item]
-            )
-        )
-
-    await bot.set_my_commands(commands=[Slash[0]])
+    await bot.set_my_commands(commands[:3]) 
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
-    [c.to_json() for c in cmd]
+    print([c.to_json() for c in cmd])
 
-
-# start command
-@bot.message_handler(commands=["hello", "start"])  # ✅
+@bot.message_handler(commands=["hello", "start"])
 async def start_command(message):
     await command.start_text(message)
 
-
-# help command
 @bot.message_handler(commands=["help"])
 async def help_command(message):
     await command.help(message)
 
+@bot.message_handler(commands=["table"])
+async def timetable_command(message):
+    await command.timetable(message)
 
+@bot.message_handler(commands=["exam"])
+async def exam_command(message):
+    await command.exam(message)
 
-# handler reply func
-# @bot.message_handler(content_types=["text"])
-# async def bot_reply_to_handler(message):
-#     if message.text == "save":
-#         await command.bot_reply_to_nocontext(message)
-#     if message.text == "Male'" or "Addu":
-#         await command.bot_reply_to_prayertime(message)
+@bot.callback_query_handler(func=lambda call: True)
+async def callback_query(call):
+    await command.handle_timetable_callback(call)
 
+@bot.message_handler(func=lambda message: True)
+async def message_handler(message):
+    await command.handle_timetable_message(message)
 
+async def main():
+    print("Bot is starting...")
+    await set_commands()
+    print("Commands set. Bot is now polling...")
+    await bot.infinity_polling()
 
 if __name__ == "__main__":
     try:
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-        print("I am online\n")
-        asyncio.run(SetCommand())
-        asyncio.run(bot.infinity_polling())
+        asyncio.run(main())
     except Exception as e:
-        print("run time error\n", e)
-
+        print(f"Runtime error: {e}")
 # ==========================================================================================================================

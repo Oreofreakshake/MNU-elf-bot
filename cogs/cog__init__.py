@@ -1,6 +1,8 @@
 
 # commands
 from cogs.commands.help import help
+from cogs.commands.timetable import timetable, timetable_callback, process_timetable_message
+from cogs.commands.exam.exam import exam
 
 
 
@@ -11,12 +13,24 @@ class Commands:
     async def start_text(self, message):  # ✅
         await self.bot.send_message(
             message.chat.id,
-            f"""Hello 👋\nYou can use /help for every command details""",
+            f"""Hello 👋\nUse /help for every command details""",
         )
 
     # -----------------------------------------------------------------------------------------------
 
     async def help(self, message):
         await help(self.bot, message)
+
+    async def timetable(self, message):
+        await timetable(self.bot, message)
+
+    async def exam(self, message):
+        await exam(self.bot, message)
+
+    async def handle_timetable_callback(self, call):
+        await timetable_callback(self.bot, call)
+
+    async def handle_timetable_message(self, message):
+        await process_timetable_message(self.bot, message)
 
 print("Commands successfully initialized!\n")
