@@ -14,6 +14,7 @@ A bot for MNU students who aren't willing to put an **EXTRA** effort to get thei
 
 ## Can i use your code to make my own?
 - Yes you can, or you could also contribute to this project and build/improve the bot with me.
+- Please credit this repo tho :)
 
 ## IMPORTANT REMINDERS!
 _by using my bot you agree to every terms and conditions mentioned below_
