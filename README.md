@@ -17,7 +17,7 @@ A bot for MNU students who aren't willing to put an **EXTRA** effort to get thei
 
 ## IMPORTANT REMINDERS!
 _by using my bot you agree to every terms and conditions mentioned below_
-- I am not responsible if you miss your classes, please send the latest schedule from the official MNU viber groups [here](https://t.me/MNUelf) so I can update the bot.
+- I am not responsible if you miss your classes, please send the latest schedule from the official MNU viber groups to our support [group](https://t.me/MNUelf) so I can update the bot.
 - This bot does not belong to MNU, so I cannot add certain features like login to moodle/self-service and retreive data due to security measures.
 - This bot is open source, so anyone is free to do whatever they want with this bot. However, I won't be liable if you use a different bot and got into trouble.
   - You can check the bots username (unique) or send me a private message to make sure whether you are using my bot or not.
