@@ -1,13 +1,38 @@
 from cogs import commandnames
 
-
 async def help(bot, message):
-    await bot.send_message(
-        message.chat.id,
-        f"""𝗛𝗲𝗿𝗲 𝗮𝗿𝗲 𝘁𝗵𝗲 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝘆𝗼𝘂 𝗰𝗮𝗻 𝘂𝘀𝗲!
-/{commandnames.commandsname[0]} - 👈 You are here
-/{commandnames.commandsname[1]} - Useful links
-/{commandnames.commandsname[2]} - Class schedule
-/{commandnames.commandsname[3]} - Final exam schedule
-         """,
-    )
+    message_text = "Here are the commands you can use!\nYou can also use the menu button to navigate through the bot!\n\n"
+    
+    commands_with_descriptions = {
+        "help": "• Bot's guide - You are here!",
+        "links": "• Get useful links for your studies",
+        "table": "• View your personalized class schedule",
+        "exam": "• Check the final exam timetable"
+    }
+    
+    for command, description in commands_with_descriptions.items():
+        message_text += f"/{command}\n{description}\n"
+    
+    await bot.send_message(message.chat.id, message_text)
+
+
+
+
+
+
+
+
+
+
+
+#     from cogs import commandnames
+
+# async def help(bot, message):
+#     message_text = "Here are the commands you can use!\n\n" + \
+#                   f"/help        👈 You are here\n" + \
+#                   f"/links        - Useful links\n" + \
+#                   f"/table       - Class schedule\n" + \
+#                   f"/exam      - Final exam schedule\n\n" + \
+#                   "You can also use the menu button to navigate through the bot!"
+
+#     await bot.send_message(message.chat.id, message_text)

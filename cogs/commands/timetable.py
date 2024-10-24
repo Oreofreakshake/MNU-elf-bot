@@ -83,23 +83,28 @@ def format_timetable(subjects):
 async def check_and_send_notifications(bot):
     while True:
         current_time = datetime.now()
+        current_day = current_time.strftime("%a").lower()
         for chat_id, subjects in user_subjects.items():
             for subject_group in subjects:
                 for subject in subject_group:
                     day, start_time, _ = subject['time'].split('-')
+                    if day.lower() != current_day:
+                        continue
                     
                     class_time = datetime.strptime(start_time, "%H%M").time()
                     class_time = datetime.combine(current_time.date(), class_time)
                     
-                    if current_time + timedelta(minutes=30) >= class_time > current_time:
+                    time_diff = class_time - current_time
+                    if timedelta(0) < time_diff <= timedelta(minutes=30):
+                        remaining_minutes = int(time_diff.total_seconds() / 60)
                         notification_message = (
                             f"You have {subject['subName']} "
-                            f"{'lecture' if subject['L'] else 'tutorial'} in 30 minutes!\n"
+                            f"{'lecture' if subject['L'] else 'tutorial'} in {remaining_minutes} minutes!\n"
                             f"Room: {subject['room']}"
                         )
                         await bot.send_message(chat_id, notification_message)
         
-        await asyncio.sleep(60)
+        await asyncio.sleep(600)
 
 async def timetable(bot, message):
     global user_states
