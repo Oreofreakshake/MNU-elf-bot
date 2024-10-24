@@ -1,0 +1,7 @@
+{
+    "moodle": "https://moodle.mnu.edu.mv/login/index.php",
+    "self-service": "https://selfservice.mnu.edu.mv/Default/Home/LogIn?ReturnUrl=%2FDefault%2F",
+    "exam-portal": "https://exam.mnu.edu.mv/portal/login.php",
+    "academic-calander": "https://mnu.edu.mv/wp-content/uploads/2023/12/2024-Final-Academic-Calendar.pdf",
+    "past-papers": "https://papers.mnu.edu.mv/my/"
+}

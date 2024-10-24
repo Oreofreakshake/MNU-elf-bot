@@ -25,7 +25,7 @@ async def set_commands():
         for name, description in zip(name.commandsname, name.commanddescript)
     ]
 
-    await bot.set_my_commands(commands[:3]) 
+    await bot.set_my_commands(commands[:len(commandnames.commandsname)]) 
 
     cmd = await bot.get_my_commands(scope=None, language_code=None)
     print([c.to_json() for c in cmd])
@@ -37,6 +37,10 @@ async def start_command(message):
 @bot.message_handler(commands=["help"])
 async def help_command(message):
     await command.help(message)
+
+@bot.message_handler(commands=["links"])
+async def links_command(message):
+    await command.links(message)
 
 @bot.message_handler(commands=["table"])
 async def timetable_command(message):
