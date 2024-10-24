@@ -71,7 +71,7 @@ def format_timetable(subjects):
                 code = subject['subCode']
                 time = subject['time']
                 room = subject['room']
-                type = "Lecture" if subject['L'] else "Tutorial"
+                type = "L" if subject['L'] else "T"
                 
                 table.add_row([code, time, room, type])
         
@@ -146,7 +146,16 @@ async def timetable_callback(bot, call):
         user_subjects[chat_id] = [s for s in user_subjects[chat_id] if s[0]['subCode'] != subject_code]
         save_user_data(user_subjects)
         await bot.answer_callback_query(call.id, f"Removed {subject_code} from your timetable")
-        await bot.send_message(chat_id, f"{subject_code} removed", reply_markup=create_timetable_markup())
+        await bot.send_message(chat_id, f"{subject_code} removed")
+
+        # Show the updated list of subjects
+        if user_subjects[chat_id]:
+            subject_list = "\n".join([f"{s[0]['subCode']} : {s[0]['subName']}" for s in user_subjects[chat_id]])
+            await bot.send_message(chat_id, f"Your current subjects:\n\n{subject_list}")
+        else:
+            await bot.send_message(chat_id, "Your timetable is now empty")
+
+        await bot.send_message(chat_id, "What would you like to do next?", reply_markup=create_timetable_markup())
     
     elif call.data == "view_timetable":
         await bot.answer_callback_query(call.id)
@@ -173,6 +182,10 @@ async def handle_message(bot, message):
                 user_subjects[chat_id].append([s for s in subjects if s])
                 save_user_data(user_subjects)
                 await bot.send_message(chat_id, f"Added {subject_code} to your timetable")
+                
+                # Show the list of subjects
+                subject_list = "\n".join([f"{s[0]['subCode']} : {s[0]['subName']}" for s in user_subjects[chat_id]])
+                await bot.send_message(chat_id, f"Your current subjects:\n\n{subject_list}")
             else:
                 await bot.send_message(chat_id, f"{subject_code} is already in your timetable")
         else:

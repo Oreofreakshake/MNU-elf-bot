@@ -14,7 +14,7 @@ class Commands:
     async def start_text(self, message):  # ✅
         await self.bot.send_message(
             message.chat.id,
-            f"""Hello 👋\nUse /help for every command details""",
+            f"""Hello 👋\nUse /help for every command details\n\nJoin https://t.me/MNUelf for updates""",
         )
 
     # -----------------------------------------------------------------------------------------------

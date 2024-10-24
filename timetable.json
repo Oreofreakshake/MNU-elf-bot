@@ -512,7 +512,7 @@
                     "subCode": "CPT333",
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
-                    "time": "Sun-1800-2200",
+                    "time": "Wed-1800-2000",
                     "room": "Q4-07(46)",
                     "L": true,
                     "T": false
@@ -521,7 +521,7 @@
                     "subCode": "CPT333",
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
-                    "time": "Tue-1800-2200",
+                    "time": "Thu-1800-2000",
                     "room": "Q4-07(46)",
                     "L": false,
                     "T": true

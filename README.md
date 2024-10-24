@@ -13,10 +13,9 @@ A Telegram bot designed to help MNU (Maldives National University) students mana
   - Automated class time reminders
 
 ### Coming Soon
-- Assignment Tracker
-  - Set and manage assignment deadlines
-  - Customizable reminder system
-  - Exam schedule management
+- Set and manage assignment deadlines
+- Exam schedule management
+- Scrape viber groups for timetable updates and class cancellations
 
 ## 📋 How to Use
 ### Timetable System
