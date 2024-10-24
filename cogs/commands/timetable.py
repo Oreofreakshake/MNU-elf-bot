@@ -2,6 +2,8 @@ import json
 import os
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from prettytable import PrettyTable
+import asyncio
+from datetime import datetime, timedelta
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -78,6 +80,27 @@ def format_timetable(subjects):
     
     return tables
 
+async def check_and_send_notifications(bot):
+    while True:
+        current_time = datetime.now()
+        for chat_id, subjects in user_subjects.items():
+            for subject_group in subjects:
+                for subject in subject_group:
+                    day, start_time, _ = subject['time'].split('-')
+                    
+                    class_time = datetime.strptime(start_time, "%H%M").time()
+                    class_time = datetime.combine(current_time.date(), class_time)
+                    
+                    if current_time + timedelta(minutes=30) >= class_time > current_time:
+                        notification_message = (
+                            f"You have {subject['subName']} "
+                            f"{'lecture' if subject['L'] else 'tutorial'} in 30 minutes!\n"
+                            f"Room: {subject['room']}"
+                        )
+                        await bot.send_message(chat_id, notification_message)
+        
+        await asyncio.sleep(60)
+
 async def timetable(bot, message):
     global user_states
     chat_id = str(message.chat.id)
@@ -86,6 +109,9 @@ async def timetable(bot, message):
         save_user_data(user_subjects)
     user_states[chat_id] = 'MAIN_MENU'
     await bot.send_message(chat_id, "Timetable Dashboard", reply_markup=create_timetable_markup())
+
+    if not hasattr(bot, 'notification_task'):
+        bot.notification_task = asyncio.create_task(check_and_send_notifications(bot))
 
 async def timetable_callback(bot, call):
     global user_states

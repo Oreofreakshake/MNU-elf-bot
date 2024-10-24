@@ -8,6 +8,7 @@ load_dotenv()
 
 # my lib
 from cogs import cog__init__, commandnames
+from cogs.commands.timetable import check_and_send_notifications
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 
@@ -57,7 +58,14 @@ async def main():
     print("Bot is starting...")
     await set_commands()
     print("Commands set. Bot is now polling...")
-    await bot.infinity_polling()
+
+    # Start the notification checker
+    notification_task = asyncio.create_task(check_and_send_notifications(bot))
+
+    try:
+        await bot.infinity_polling()
+    finally:
+        notification_task.cancel()
 
 if __name__ == "__main__":
     try:
