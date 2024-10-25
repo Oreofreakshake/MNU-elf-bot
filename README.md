@@ -19,10 +19,10 @@ A Telegram bot designed to help MNU (Maldives National University) students mana
 
 ## 📋 How to Use
 ### Timetable System
-- Join our support [group](https://t.me/MNUelf) to access the latest schedules
+- Join our support [group](https://t.me/MNUelf) to update the latest schedules **_(note that since this is an unofficial MNU bot, I dont have any access to other timetables outside FEST Male' campus)_**
 - Share your official class schedule from MNU Viber groups in the support [group](https://t.me/MNUelf)
-- The bot will be updated with the latest timetable information
-- Access your personalized schedule anytime through the bot
+- The bot will be updated with the latest timetable information **_(accounting to the first two points)_**
+- Access your personalized schedule anytime through the bot and get notifications for your class time.
 
 ## 🤝 Contributing
 All contributions are welcome! Here's how you can help:
