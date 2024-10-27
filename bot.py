@@ -46,9 +46,15 @@ async def links_command(message):
 async def timetable_command(message):
     await command.timetable(message)
 
+@bot.message_handler(commands=["dues"])
+async def deadline_command(message):
+    await command.deadlines(message)
+
 @bot.message_handler(commands=["exam"])
 async def exam_command(message):
     await command.exam(message)
+
+# -----------------------------------------------------------------------------------------------
 
 @bot.callback_query_handler(func=lambda call: True)
 async def callback_query(call):

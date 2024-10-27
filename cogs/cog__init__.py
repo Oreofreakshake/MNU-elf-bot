@@ -2,6 +2,7 @@
 # commands
 from cogs.commands.help import help
 from cogs.commands.timetable import timetable, timetable_callback, process_timetable_message
+from cogs.commands.deadlines import deadlines
 from cogs.commands.exam.exam import exam
 from cogs.commands.links import links
 
@@ -27,6 +28,9 @@ class Commands:
 
     async def timetable(self, message):
         await timetable(self.bot, message)
+
+    async def deadlines(self, message):
+        await deadlines(self.bot, message)
 
     async def exam(self, message):
         await exam(self.bot, message)

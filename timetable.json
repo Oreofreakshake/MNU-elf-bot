@@ -513,7 +513,7 @@
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
                     "time": "Wed-1800-2000",
-                    "room": "Q4-07(46)",
+                    "room": "Q3-09(lab-30)",
                     "L": true,
                     "T": false
                 },
@@ -522,7 +522,7 @@
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
                     "time": "Thu-1800-2000",
-                    "room": "Q4-07(46)",
+                    "room": "Q3-09(lab-30)",
                     "L": false,
                     "T": true
                 },
@@ -590,8 +590,8 @@
                     "subCode": "CPT333",
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
-                    "time": "Sun-1800-2200",
-                    "room": "Q4-07(46)",
+                    "time": "Wed-1800-2000",
+                    "room": "Q3-09(lab-30)",
                     "L": true,
                     "T": false
                 },
@@ -599,8 +599,8 @@
                     "subCode": "CPT333",
                     "subName": "Cryptography and Network Security",
                     "lecturer": "Ibrahim Thoriq",
-                    "time": "Tue-1800-2200",
-                    "room": "Q4-07(46)",
+                    "time": "Thu-1800-2000",
+                    "room": "Q3-09(lab-30)",
                     "L": false,
                     "T": true
                 },

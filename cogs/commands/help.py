@@ -7,6 +7,7 @@ async def help(bot, message):
         "help": "• Bot's guide - You are here!",
         "links": "• Get useful links for your studies",
         "table": "• View your personalized class schedule",
+        "dues": "• Check your assignment & midterm deadlines",
         "exam": "• Check the final exam timetable"
     }
     
